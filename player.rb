@@ -31,6 +31,10 @@ class Player < Rectangle
     false
   end
 
+  def through?(obstacle)
+    corners[0][0] == obstacle.pos[0]
+  end
+
   def corners
     [@pos, [@pos[0]+SIDE_LENGTH, @pos[1]],
     [@pos[0], @pos[1]+SIDE_LENGTH], [@pos[0]+SIDE_LENGTH, @pos[1]+SIDE_LENGTH]]
