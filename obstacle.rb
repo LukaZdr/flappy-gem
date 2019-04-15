@@ -29,7 +29,7 @@ class Obstacle
     @pos[0] -= SPEED
   end
 
-  def destroy_if_out_of_window
+  def remove
     @rekt_lower.remove
     @rekt_upper.remove
   end
