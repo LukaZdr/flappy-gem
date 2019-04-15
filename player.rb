@@ -8,7 +8,7 @@ class Player < Rectangle
   X_POS = 100
   GRAVITY = 9.81
   DT  = 1.0/5
-  JUMP_HEIGHT = 7
+  JUMP_HEIGHT = 40
   def initialize
     @pos = [X_POS, 250]
     @velocity = 0
@@ -46,7 +46,7 @@ class Player < Rectangle
   end
 
   def jump
-     self.y -= JUMP_HEIGHT
+     self.y -= JUMP_HEIGHT * DT
      @velocity = 0
   end
 end
