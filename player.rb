@@ -1,7 +1,7 @@
 require 'ruby2d'
 require_relative 'obstacle'
 
-class Player < Rectangle
+class Player < Image
   attr_accessor :pos
   attr_accessor :velocity
   SIDE_LENGTH = 30
@@ -12,10 +12,13 @@ class Player < Rectangle
   def initialize
     @pos = [X_POS, 250]
     @velocity = 0
+    @rotation = 50
     super(
+      'assets/flappy-gem-player.png',
       x: @pos[0], y: @pos[1],
       height: SIDE_LENGTH, width: SIDE_LENGTH,
-      color: 'red'
+      color: 'red',
+      rotate: @rotation
     )
   end
 
@@ -43,10 +46,17 @@ class Player < Rectangle
   def fall
     @velocity += GRAVITY * DT
     self.y += @velocity * DT
+    rotate
   end
 
   def jump
      self.y -= JUMP_HEIGHT * DT
      @velocity = 0
+     rotate
+  end
+
+  def rotate
+    @rotation += @velocity/3
+    self.rotate = @rotation
   end
 end
