@@ -21,7 +21,7 @@ class LoseScreen
       color: 'black'
     )
     @high_score = Text.new(
-      "Highscore #{ highscore(score) }",
+      "Highscore: #{ highscore(score) }",
       x: X+45, y: 255,
       size: 20,
       color: 'black'
