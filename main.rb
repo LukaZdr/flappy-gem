@@ -1,11 +1,27 @@
 require 'ruby2d'
 require_relative 'window'
 require_relative 'obstacle'
+require_relative 'player'
 
 @obstacle_list = [Obstacle.new]
 @obstacle_spawn_counter = 1
+@player = Player.new
+@jump_counter = 0
+
+on :key_down do |event|
+  if event.key == 'space'
+    @jump_counter += 1
+  end
+end
 
 update do
+  if @jump_counter % 10 == 0
+    @player.fall
+    @jump_counter = 0
+  else
+    @player.jump
+    @jump_counter += 1
+  end
   obstacles_move
   spawn_obstacle
 end
