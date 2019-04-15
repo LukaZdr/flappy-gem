@@ -33,8 +33,8 @@ end
 @tick = 0
 
 update do
-  @start_screen&.rotate(@tick)
   @tick += 0.05
+  @start_screen&.rotate(@tick)
   next unless @game_started
   next if @game_over
   @background.move
