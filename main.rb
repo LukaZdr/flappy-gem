@@ -4,12 +4,13 @@ require_relative 'obstacle'
 require_relative 'player'
 require_relative 'score'
 require_relative 'start_screen'
+require_relative 'lose_screen'
 
 @obstacle_list = [Obstacle.new]
 @obstacle_spawn_counter = 1
 @player = Player.new
 @jump_counter = 0
-@count = 0
+@score_count = 0
 @game_started = false
 @game_over = false
 @start_screen = StartScreen.new
@@ -49,8 +50,8 @@ end
 def score_count
   if @player.through?(@obstacle_list[0])
     @score.remove
-    @count += 1
-    @score = Score.new(@count)
+    @score_count += 1
+    @score = Score.new(@score_count)
   end
 end
 
@@ -63,15 +64,20 @@ def player_move
     @jump_counter += 1
   end
   if @player.hits?(@obstacle_list[0])
-    @game_over = true
+    end_game
   end
 end
 
 def start_game
   @game_started = true
-  @score = Score.new(@count)
+  @score = Score.new(@score_count)
   @start_screen.remove
   @start_screen = nil
+end
+
+def end_game
+  @game_over = true
+  LoseScreen.new(@score_count)
 end
 
 show
