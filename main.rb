@@ -73,9 +73,9 @@ def player_move
     @player.jump
     @jump_counter += 1
   end
-  # if @player.hits?(@obstacle_list[0])
-  #   end_game
-  # end
+  if @player.hits?(@obstacle_list[0])
+    end_game
+  end
 end
 
 def start_game

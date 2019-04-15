@@ -11,15 +11,15 @@ class Obstacle
   DISTANZ = 150
   def initialize
     @pos = [500, Random.rand(100..400)]
-    @rekt_upper = Rectangle.new(
+    @rekt_upper = Image.new(
+      'assets/wall.png',
       x: @pos[0], y: (@pos[1]- HEIGHT - DISTANZ/2),
-      width: WIDTH, height: HEIGHT,
-      color: 'green'
+      width: WIDTH, height: HEIGHT
     )
-    @rekt_lower = Rectangle.new(
+    @rekt_lower = Image.new(
+      'assets/wall.png',
       x: @pos[0], y: (@pos[1] + DISTANZ/2),
-      width: WIDTH, height: HEIGHT,
-      color: 'green'
+      width: WIDTH, height: HEIGHT
     )
   end
 
