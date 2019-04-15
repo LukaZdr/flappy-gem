@@ -8,7 +8,7 @@ class Player < Rectangle
   X_POS = 100
   GRAVITY = 9.81
   DT  = 1.0/5
-  JUMP_HEIGHT = 7
+  JUMP_HEIGHT = 40
   def initialize
     @pos = [X_POS, 250]
     @velocity = 0
@@ -31,6 +31,10 @@ class Player < Rectangle
     false
   end
 
+  def through?(obsticle)
+    corners[0][0] == obsticle.pos[0]
+  end
+
   def corners
     [@pos, [@pos[0]+SIDE_LENGTH, @pos[1]],
     [@pos[0], @pos[1]+SIDE_LENGTH], [@pos[0]+SIDE_LENGTH, @pos[1]+SIDE_LENGTH]]
@@ -42,7 +46,7 @@ class Player < Rectangle
   end
 
   def jump
-     self.y -= JUMP_HEIGHT
+     self.y -= JUMP_HEIGHT * DT
      @velocity = 0
   end
 end
