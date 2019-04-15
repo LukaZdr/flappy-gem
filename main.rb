@@ -5,7 +5,9 @@ require_relative 'player'
 require_relative 'score'
 require_relative 'start_screen'
 require_relative 'lose_screen'
+require_relative 'background'
 
+@background = Background.new
 @obstacle_spawn_counter = 1
 @obstacle_list = [Obstacle.new]
 @player = Player.new
@@ -28,9 +30,14 @@ on :key_down do |event|
   end
 end
 
+@tick = 0
+
 update do
+  @start_screen&.rotate(@tick)
+  @tick += 0.05
   next unless @game_started
   next if @game_over
+  @background.move
   score_count
   player_move
   obstacles_move
@@ -66,9 +73,9 @@ def player_move
     @player.jump
     @jump_counter += 1
   end
-  if @player.hits?(@obstacle_list[0])
-    end_game
-  end
+  # if @player.hits?(@obstacle_list[0])
+  #   end_game
+  # end
 end
 
 def start_game
@@ -76,7 +83,6 @@ def start_game
   @score = Score.new(@score_count)
   @start_screen.remove
   @start_screen = nil
-  print @obstacle_list
 end
 
 def end_game

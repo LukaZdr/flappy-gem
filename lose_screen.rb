@@ -9,25 +9,25 @@ class LoseScreen
     )
     @title = Text.new(
       'Score:',
-      x: 155, y: 120,
+      x: 170, y: 120,
       size: 50,
       color: 'black'
     )
     @score = Text.new(
       score,
-      x: 155, y: 180,
+      x: 170, y: 180,
       size: 100,
       color: 'black'
     )
     @restart_text = Text.new(
       "'space' to restart",
-      x: 155, y: 300,
+      x: 180, y: 300,
       size: 15,
       color: 'black'
     )
     @exit_text = Text.new(
       "'esc' to end the game",
-      x: 155, y: 330,
+      x: 170, y: 330,
       size: 15,
       color: 'black'
     )
