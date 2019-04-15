@@ -7,6 +7,7 @@ require_relative 'player'
 @obstacle_spawn_counter = 1
 @player = Player.new
 @jump_counter = 0
+@count = 0
 
 on :key_down do |event|
   if event.key == 'space'
@@ -15,6 +16,10 @@ on :key_down do |event|
 end
 
 update do
+  if @player.through?(@obstacle_list[0])
+    @count += 1
+    print @count
+  end
   if @jump_counter % 10 == 0
     @player.fall
     @jump_counter = 0
