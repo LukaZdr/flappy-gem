@@ -2,30 +2,34 @@ require 'ruby2d'
 
 class LoseScreen
   def initialize(score)
-    @background = Rectangle.new(
-      x: 150, y: 100,
-      height: 300, width: 200,
-      color: 'gray'
+    @background = Image.new(
+      'assets/frame.png',
+      x: 125, y: 75,
+      height: 325, width: 225
     )
     @title = Text.new(
       'Score:',
-      x: 155, y: 110,
+      x: 155, y: 120,
       size: 50,
+      color: 'black'
     )
     @score = Text.new(
       score,
       x: 155, y: 180,
       size: 100,
+      color: 'black'
     )
     @restart_text = Text.new(
       "'space' to restart",
-      x: 155, y: 320,
-      size: 20,
+      x: 155, y: 300,
+      size: 15,
+      color: 'black'
     )
     @exit_text = Text.new(
       "'esc' to end the game",
-      x: 155, y: 350,
-      size: 20,
+      x: 155, y: 330,
+      size: 15,
+      color: 'black'
     )
   end
 
