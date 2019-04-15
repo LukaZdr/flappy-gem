@@ -6,8 +6,8 @@ require_relative 'score'
 require_relative 'start_screen'
 require_relative 'lose_screen'
 
-@obstacle_list = [Obstacle.new]
 @obstacle_spawn_counter = 1
+@obstacle_list = [Obstacle.new]
 @player = Player.new
 @jump_counter = 0
 @score_count = 0
@@ -18,6 +18,9 @@ require_relative 'lose_screen'
 on :key_down do |event|
   if event.key == 'space'
     start_game unless @game_started
+    if @game_over
+      restart_game
+    end
     @jump_counter += 1
   end
   if event.key == 'escape'
@@ -73,11 +76,27 @@ def start_game
   @score = Score.new(@score_count)
   @start_screen.remove
   @start_screen = nil
+  print @obstacle_list
 end
 
 def end_game
   @game_over = true
-  LoseScreen.new(@score_count)
+  @lose_screen = LoseScreen.new(@score_count)
+end
+
+def restart_game
+  @obstacle_spawn_counter = 1
+  @score.remove
+  @lose_screen.remove
+  @obstacle_list.each { |obstacle| obstacle.remove }
+  @obstacle_list = [Obstacle.new]
+  @player.remove
+  @player = Player.new
+  @jump_counter = 0
+  @score_count = 0
+  @game_started = false
+  @game_over = false
+  @start_screen = StartScreen.new
 end
 
 show
