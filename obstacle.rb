@@ -3,11 +3,13 @@ require 'ruby2d'
 # Brick to brake to win
 class Obstacle
   attr_accessor :pos
+  attr_accessor :rekt_upper
+  attr_accessor :rekt_lower
   SPEED = 2
   HEIGHT = 500
   WIDTH = 80
-  DISTANZ = 100
-  def initialize()
+  DISTANZ = 150
+  def initialize
     @pos = [500, Random.rand(100..400)]
     @rekt_upper = Rectangle.new(
       x: @pos[0], y: (@pos[1]- HEIGHT - DISTANZ/2),
